@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rupal's Portfolio - Software Engineer & Designer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="app">
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <div class="nav-logo">
+          <span class="logo-text">Portfolio</span>
+        </div>
+        <div class="nav-menu" id="navMenu">
+          <a href="#work" class="nav-link">Work</a>
+          <a href="#design" class="nav-link">Design</a>
+          <a href="#creative" class="nav-link">Creative</a>
+          <a href="#journey" class="nav-link">Journey</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#collaborate" class="nav-link">Collaborate</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <!-- HERO SECTION -->
+      <section id="hero" class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">Rupal Rupashree Biswal</h1>
+          <p class="hero-subtitle">Software engineer, designer, and lifelong learner. Building responsive apps, exploring AI systems, and documenting the journey.</p>
+          <div class="hero-cta">
+            <a href="#work" class="btn btn-primary">Explore My Work</a>
+            <a href="#collaborate" class="btn btn-secondary">Get in Touch</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK SECTION -->
+      <section id="work" class="section">
+        <div class="container">
+          <div class="section-header">
+            <i class="fas fa-code section-icon"></i>
+            <h2>Work</h2>
+          </div>
+          <div class="projects-grid" id="projectsGrid"></div>
+        </div>
+      </section>
+
+      <!-- DESIGN SECTION -->
+      <section id="design" class="section">
+        <div class="container">
+          <div class="section-header">
+            <i class="fas fa-palette section-icon"></i>
+            <h2>Design</h2>
+          </div>
+          <div class="projects-grid" id="designGrid"></div>
+        </div>
+      </section>
+
+      <!-- CREATIVE SECTION -->
+      <section id="creative" class="section">
+        <div class="container">
+          <div class="section-header">
+            <i class="fas fa-camera section-icon"></i>
+            <h2>Creative</h2>
+          </div>
+          <p class="section-desc">Content creation, modeling, and social media work — ready for each new piece as you make it.</p>
+          <div class="projects-grid" id="creativeGrid"></div>
+        </div>
+      </section>
+
+      <!-- JOURNEY SECTION -->
+      <section id="journey" class="section">
+        <div class="container">
+          <div class="section-header">
+            <i class="fas fa-compass section-icon"></i>
+            <h2>Journey</h2>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about" class="section">
+        <div class="container">
+          <div class="section-header">
+            <i class="fas fa-sparkles section-icon"></i>
+            <h2>About & Skills</h2>
+          </div>
+          <div class="about-content">
+            <p class="about-text">
+              I work as a software engineer on integration systems — the plumbing that makes separate applications behave like one. That work taught me to think in terms of contracts, edge cases, and things that need to keep running long after I've moved on.
+            </p>
+            <p class="about-text">
+              Outside of that, I'm someone who genuinely loves learning — I'm expanding into full applications, design, and creative work, all documented in public on this site as I go.
+            </p>
+            <div class="skills-section" id="skillsSection"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLLABORATE SECTION -->
+      <section id="collaborate" class="section">
+        <div class="container">
+          <div class="section-header">
+            <i class="fas fa-rocket section-icon"></i>
+            <h2>Collaborate</h2>
+          </div>
+          <div class="collaborate-content">
+            <form class="contact-form" id="contactForm">
+              <p>Tell me what you're looking for and I'll get back to you by email.</p>
+              
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" required placeholder="Your name">
+              </div>
+              
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required placeholder="you@example.com">
+              </div>
+              
+              <div class="form-group">
+                <label>What are you looking for?</label>
+                <select name="query">
+                  <option>Collaboration</option>
+                  <option>Hire me</option>
+                  <option>Project inquiry</option>
+                  <option>Just saying hi</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" rows="4" placeholder="A few details about the project or opportunity"></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+
+            <div class="social-section">
+              <div class="social-links">
+                <a href="mailto:rupalrupashreebiswal@gmail.com" class="social-link" title="Email">
+                  <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://in.linkedin.com/in/rupal-rupashree-biswal/" target="_blank" class="social-link" title="LinkedIn">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/rupalthegreat" target="_blank" class="social-link" title="GitHub">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+
+              <div class="elsewhere">
+                <p class="elsewhere-label">Elsewhere</p>
+                <div class="elsewhere-grid" id="elsewhereGrid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built and maintained by hand — updated as new projects ship.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

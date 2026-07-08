@@ -1,0 +1,12 @@
+{
+  "name": "rupal-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Rupal Rupashree Biswal",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000"
+  },
+  "keywords": ["portfolio", "software engineer", "designer"],
+  "author": "Rupal Rupashree Biswal",
+  "license": "MIT"
+}
