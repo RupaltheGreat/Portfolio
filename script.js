@@ -207,26 +207,47 @@ function renderElsewhere() {
   `).join('');
 }
 
+/* ============ ROCKET LAUNCH ============ */
+
+function initRocket() {
+  const rocketBtn = document.getElementById('rocketBtn');
+  const trail = document.getElementById('rocketTrail');
+  const heroRole = document.getElementById('heroRole');
+
+  if (!rocketBtn) return;
+
+  rocketBtn.addEventListener('click', () => {
+    if (rocketBtn.classList.contains('launching')) return;
+
+    rocketBtn.classList.add('launching');
+    trail.classList.add('active');
+    heroRole.classList.add('pulse');
+
+    setTimeout(() => {
+      rocketBtn.classList.remove('launching');
+      trail.classList.remove('active');
+      heroRole.classList.remove('pulse');
+    }, 1100);
+  });
+}
+
 /* ============ THEME TOGGLE ============ */
 
 function initTheme() {
   const themeToggle = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  
-  if (savedTheme === 'dark') {
-    document.documentElement.style.colorScheme = 'dark';
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-  }
-  
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
   themeToggle.addEventListener('click', () => {
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.style.colorScheme = newTheme;
-    themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    
-    // Regenerate starfield to match theme
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    themeToggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
     generateStarfield();
   });
 }
@@ -235,28 +256,36 @@ function initTheme() {
 
 function initForm() {
   const form = document.getElementById('contactForm');
-  
+
   if (!form) return;
-  
-  form.addEventListener('submit', (e) => {
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    const formData = {
-      name: form.name.value,
-      email: form.email.value,
-      query: form.query.value,
-      message: form.message.value,
-      timestamp: new Date().toISOString()
-    };
-    
-    console.log('Contact form submitted:', formData);
-    
-    let submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
-    submissions.push(formData);
-    localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
-    
-    alert('Thank you! I\'ll get back to you soon at ' + form.email.value);
-    form.reset();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'SENDING...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        alert('Thank you! Your message has been sent — I\'ll get back to you soon.');
+        form.reset();
+      } else {
+        alert('Something went wrong sending your message. Please try emailing directly instead.');
+      }
+    } catch (err) {
+      alert('Network error — please try again or email directly.');
+    } finally {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
   });
 }
 
@@ -297,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize features
   initTheme();
+  initRocket();
   initForm();
   initSmoothScroll();
   
