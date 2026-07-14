@@ -1,5 +1,4 @@
-/* ============ PORTFOLIO DATA ============ */
-/* EDIT THESE SECTIONS TO CUSTOMIZE YOUR PORTFOLIO */
+/* ============ PORTFOLIO DATA (EXACT FROM YOUR REACT COMPONENT) ============ */
 
 const PROJECTS = [
   {
@@ -22,7 +21,7 @@ const PROJECTS = [
   },
   {
     title: "Integration playground",
-    blurb: "A sandbox of small services that talk to each other, built to practice clean API design and data mapping.",
+    blurb: "A sandbox of small services that talk to each other, built to practice clean API design and data mapping outside of work tooling.",
     tags: ["APIs", "Node.js"],
     status: "concept",
   },
@@ -40,6 +39,12 @@ const CREATIVE_WORKS = [
   { title: "Portfolio 03", blurb: "A third slot, ready and waiting for future work.", tag: "Video" },
 ];
 
+const WRITING_WORKS = [
+  { title: "Portfolio 01", blurb: "Your first piece of writing — link it here once it's published.", tag: "Career" },
+  { title: "Portfolio 02", blurb: "A second writing slot — blog post, essay, or journal entry.", tag: "Engineering" },
+  { title: "Portfolio 03", blurb: "A third slot, ready and waiting for future work.", tag: "Journal" },
+];
+
 const JOURNEY = [
   { label: "Mission start", title: "SAP integration engineer", desc: "Building and maintaining the systems that keep enterprise data flowing." },
   { label: "Course correction", title: "Started learning full-stack development", desc: "Picked up React and modern frontend practice outside of work hours." },
@@ -49,83 +54,135 @@ const JOURNEY = [
 ];
 
 const SKILLS = [
-  { 
-    heading: "Backend & integration", 
-    items: ["APIs & data mapping", "Node.js", "REST & webhooks", "System design"] 
-  },
-  { 
-    heading: "Frontend & apps", 
-    items: ["React", "Responsive layout", "State management", "Accessibility basics"] 
-  },
-  { 
-    heading: "Currently exploring", 
-    items: ["LLM APIs", "Prompt design", "Retrieval systems", "Agent tool-use"] 
-  },
+  { heading: "Backend & integration", items: ["APIs & data mapping", "Node.js", "REST & webhooks", "System design"] },
+  { heading: "Frontend & apps", items: ["React", "Responsive layout", "State management", "Accessibility basics"] },
+  { heading: "Currently exploring", items: ["LLM APIs", "Prompt design", "Retrieval systems", "Agent tool-use"], nebula: true },
 ];
 
 const ELSEWHERE = [
   { name: "Medium", icon: "fa-rss", url: "#" },
   { name: "Figma", icon: "fa-figma", url: "#" },
-  { name: "Twitter/X", icon: "fa-twitter", url: "#" },
+  { name: "Canva", icon: "fa-palette", url: "#" },
+  { name: "X", icon: "fa-twitter", url: "#" },
+  { name: "Unstop", icon: "fa-trophy", url: "#" },
+  { name: "Reddit", icon: "fa-reddit", url: "#" },
   { name: "LeetCode", icon: "fa-code", url: "#" },
   { name: "Discord", icon: "fa-discord", url: "#" },
-  { name: "LinkedIn", icon: "fa-linkedin", url: "https://in.linkedin.com/in/rupal-rupashree-biswal/" },
 ];
+
+const STATUS_STYLE = {
+  live: { label: "live", color: "var(--teal)", bg: "var(--status-bg-live)" },
+  "in-progress": { label: "in progress", color: "var(--flame)", bg: "var(--status-bg-prog)" },
+  concept: { label: "concept", color: "var(--nebula-pink)", bg: "var(--status-bg-concept)" },
+};
+
+/* ============ STARFIELD GENERATION ============ */
+
+function generateStarfield() {
+  const STARS = Array.from({ length: 36 }).map((_, i) => ({
+    top: (i * 37) % 100,
+    left: (i * 53) % 100,
+    size: (i % 3) + 1,
+    delay: (i % 10) * 0.4,
+  }));
+
+  const starfield = document.getElementById('starfield');
+  starfield.innerHTML = '';
+
+  STARS.forEach(star => {
+    const starEl = document.createElement('div');
+    starEl.className = `star size-${star.size}`;
+    starEl.style.top = `${star.top}%`;
+    starEl.style.left = `${star.left}%`;
+    starEl.style.animationDelay = `${star.delay}s`;
+    starEl.style.animationDuration = `${3 + (star.size * 0.5)}s`;
+    starfield.appendChild(starEl);
+  });
+}
 
 /* ============ RENDER FUNCTIONS ============ */
 
-function renderProjects() {
-  const grid = document.getElementById('projectsGrid');
-  grid.innerHTML = PROJECTS.map(project => `
-    <div class="project-card">
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-        <h3>${project.title}</h3>
-        ${project.status ? `
-          <div class="status-badge status-${project.status}">
-            <span class="status-dot"></span>
-            <span>${project.status === 'in-progress' ? 'in progress' : project.status}</span>
-          </div>
-        ` : ''}
+function renderWorkProjects() {
+  const grid = document.getElementById('workGrid');
+  grid.innerHTML = PROJECTS.map(project => {
+    const s = STATUS_STYLE[project.status];
+    return `
+      <div class="project-card">
+        <h3>
+          ${project.title}
+          ${s ? `
+            <span class="status-badge status-${project.status}">
+              <span class="status-dot"></span>
+              ${s.label}
+            </span>
+          ` : ''}
+        </h3>
+        <p>${project.blurb}</p>
+        <div class="project-tags">
+          ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        </div>
       </div>
-      <p>${project.blurb}</p>
-      <div class="project-tags">
-        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+    `;
+  }).join('');
+}
+
+function renderTabSection(containerId, items, varName) {
+  const container = document.getElementById(containerId);
+  
+  let html = '<div class="tab-buttons">';
+  items.forEach((item, i) => {
+    html += `<button class="tab-button ${i === 0 ? 'active' : ''}" data-tab="${varName}-${i}">Portfolio ${String.fromCharCode(65 + i)}</button>`;
+  });
+  html += '</div>';
+
+  html += '<div class="tab-content">';
+  items.forEach((item, i) => {
+    html += `
+      <div class="project-card" style="${i > 0 ? 'display: none;' : ''}">
+        <h3>${item.title}</h3>
+        <p>${item.blurb}</p>
+        <div class="project-tags">
+          <span class="tag">${item.tag}</span>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  });
+  html += '</div>';
+
+  container.innerHTML = html;
+
+  // Add tab button listeners
+  const buttons = container.querySelectorAll('.tab-button');
+  const cards = container.querySelectorAll('.project-card');
+  
+  buttons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+      
+      cards.forEach(card => card.style.display = 'none');
+      cards[index].style.display = 'block';
+    });
+  });
 }
 
 function renderDesign() {
-  const grid = document.getElementById('designGrid');
-  grid.innerHTML = DESIGN_WORKS.map(work => `
-    <div class="project-card">
-      <h3>${work.title}</h3>
-      <p>${work.blurb}</p>
-      <div class="project-tags">
-        <span class="tag">${work.tag}</span>
-      </div>
-    </div>
-  `).join('');
+  renderTabSection('designTabs', DESIGN_WORKS, 'design');
 }
 
 function renderCreative() {
-  const grid = document.getElementById('creativeGrid');
-  grid.innerHTML = CREATIVE_WORKS.map(work => `
-    <div class="project-card">
-      <h3>${work.title}</h3>
-      <p>${work.blurb}</p>
-      <div class="project-tags">
-        <span class="tag">${work.tag}</span>
-      </div>
-    </div>
-  `).join('');
+  renderTabSection('creativeTabs', CREATIVE_WORKS, 'creative');
 }
 
-function renderTimeline() {
-  const timeline = document.getElementById('timeline');
+function renderWriting() {
+  renderTabSection('writingTabs', WRITING_WORKS, 'writing');
+}
+
+function renderJourney() {
+  const timeline = document.getElementById('journeyTimeline');
   timeline.innerHTML = JOURNEY.map(item => `
     <div class="timeline-item">
-      <p class="timeline-label">${item.label}</p>
+      <p class="timeline-label">${item.label.toUpperCase()}</p>
       <p class="timeline-title">${item.title}</p>
       <p class="timeline-desc">${item.desc}</p>
     </div>
@@ -133,31 +190,23 @@ function renderTimeline() {
 }
 
 function renderSkills() {
-  const section = document.getElementById('skillsSection');
-  section.innerHTML = `
-    <div style="margin-top: 40px;">
-      <h3 style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
-        <i class="fas fa-code" style="color: var(--teal); font-size: 18px;"></i>
-        <span>Skills</span>
-      </h3>
-      <div class="skills-section">
-        ${SKILLS.map(group => `
-          <div class="skill-group">
-            <h4>${group.heading}</h4>
-            <div class="skill-list">
-              ${group.items.map(item => `<div class="skill-item">${item}</div>`).join('')}
-            </div>
-          </div>
+  const grid = document.getElementById('skillsGrid');
+  grid.innerHTML = SKILLS.map(group => `
+    <div class="skill-group">
+      <h4>${group.heading.toUpperCase()}</h4>
+      <div class="skill-list">
+        ${group.items.map(item => `
+          <div class="skill-item ${group.nebula ? 'nebula' : ''}">${item}</div>
         `).join('')}
       </div>
     </div>
-  `;
+  `).join('');
 }
 
 function renderElsewhere() {
   const grid = document.getElementById('elsewhereGrid');
   grid.innerHTML = ELSEWHERE.map(item => `
-    <a href="${item.url}" class="elsewhere-link" target="_blank" rel="noopener noreferrer">
+    <a href="${item.url}" class="elsewhere-link" target="_blank" rel="noopener noreferrer" title="${item.name}">
       <i class="fab ${item.icon}"></i>
       <span>${item.name}</span>
     </a>
@@ -190,7 +239,7 @@ function initTheme() {
 function initForm() {
   const form = document.getElementById('contactForm');
   
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     
     const formData = {
@@ -201,15 +250,12 @@ function initForm() {
       timestamp: new Date().toISOString()
     };
     
-    // Log to console (in production, send to a backend service)
     console.log('Contact form submitted:', formData);
     
-    // Store in localStorage
     let submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
     submissions.push(formData);
     localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
     
-    // Show confirmation
     alert('Thank you! I\'ll get back to you soon.');
     form.reset();
   });
@@ -235,13 +281,15 @@ function initSmoothScroll() {
   });
 }
 
-/* ============ INITIALIZE ============ */
+/* ============ INITIALIZE ALL ============ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderProjects();
+  generateStarfield();
+  renderWorkProjects();
   renderDesign();
   renderCreative();
-  renderTimeline();
+  renderWriting();
+  renderJourney();
   renderSkills();
   renderElsewhere();
   initTheme();

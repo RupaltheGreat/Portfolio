@@ -3,21 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rupal's Portfolio - Software Engineer & Designer</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Rupal Rupashree Biswal - Portfolio</title>
+  <link rel="stylesheet" href="styles-exact.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div id="app">
+  <div id="root">
+    <!-- STARFIELD BACKGROUND -->
+    <div class="starfield" id="starfield"></div>
+
+    <!-- NAVIGATION -->
     <nav class="nav-bar">
       <div class="nav-content">
-        <div class="nav-logo">
+        <div class="nav-left">
           <span class="logo-text">Portfolio</span>
         </div>
         <div class="nav-menu" id="navMenu">
           <a href="#work" class="nav-link">Work</a>
           <a href="#design" class="nav-link">Design</a>
           <a href="#creative" class="nav-link">Creative</a>
+          <a href="#writing" class="nav-link">Writing</a>
           <a href="#journey" class="nav-link">Journey</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#collaborate" class="nav-link">Collaborate</a>
@@ -30,11 +35,13 @@
 
     <main>
       <!-- HERO SECTION -->
-      <section id="hero" class="hero">
+      <section class="hero">
         <div class="hero-content">
           <h1 class="hero-title">Rupal Rupashree Biswal</h1>
-          <p class="hero-subtitle">Software engineer, designer, and lifelong learner. Building responsive apps, exploring AI systems, and documenting the journey.</p>
-          <div class="hero-cta">
+          <p class="hero-subtitle">
+            Software engineer, designer, and lifelong learner. Building responsive apps, exploring AI systems, and documenting the journey.
+          </p>
+          <div class="hero-buttons">
             <a href="#work" class="btn btn-primary">Explore My Work</a>
             <a href="#collaborate" class="btn btn-secondary">Get in Touch</a>
           </div>
@@ -42,56 +49,67 @@
       </section>
 
       <!-- WORK SECTION -->
-      <section id="work" class="section">
-        <div class="container">
+      <section id="work" class="section section-pad">
+        <div class="section-wrapper">
           <div class="section-header">
-            <i class="fas fa-code section-icon"></i>
+            <i class="fas fa-code section-icon" style="color: var(--teal)"></i>
             <h2>Work</h2>
           </div>
-          <div class="projects-grid" id="projectsGrid"></div>
+          <div class="projects-grid" id="workGrid"></div>
         </div>
       </section>
 
       <!-- DESIGN SECTION -->
-      <section id="design" class="section">
-        <div class="container">
+      <section id="design" class="section section-pad">
+        <div class="section-wrapper">
           <div class="section-header">
-            <i class="fas fa-palette section-icon"></i>
+            <i class="fas fa-palette section-icon" style="color: var(--nebula-pink)"></i>
             <h2>Design</h2>
           </div>
-          <div class="projects-grid" id="designGrid"></div>
+          <div class="tab-section" id="designTabs"></div>
         </div>
       </section>
 
       <!-- CREATIVE SECTION -->
-      <section id="creative" class="section">
-        <div class="container">
+      <section id="creative" class="section section-pad">
+        <div class="section-wrapper">
           <div class="section-header">
-            <i class="fas fa-camera section-icon"></i>
+            <i class="fas fa-camera section-icon" style="color: var(--flame)"></i>
             <h2>Creative</h2>
           </div>
-          <p class="section-desc">Content creation, modeling, and social media work — ready for each new piece as you make it.</p>
-          <div class="projects-grid" id="creativeGrid"></div>
+          <p class="section-desc">Content creation, modeling, and social media work — tabs are ready for each new piece as you make it.</p>
+          <div class="tab-section" id="creativeTabs"></div>
+        </div>
+      </section>
+
+      <!-- WRITING SECTION -->
+      <section id="writing" class="section section-pad">
+        <div class="section-wrapper">
+          <div class="section-header">
+            <i class="fas fa-pen-nib section-icon" style="color: var(--teal)"></i>
+            <h2>Writing</h2>
+          </div>
+          <div class="tab-section" id="writingTabs"></div>
         </div>
       </section>
 
       <!-- JOURNEY SECTION -->
-      <section id="journey" class="section">
-        <div class="container">
+      <section id="journey" class="section section-pad">
+        <div class="section-wrapper">
           <div class="section-header">
-            <i class="fas fa-compass section-icon"></i>
+            <i class="fas fa-compass section-icon" style="color: var(--flame)"></i>
             <h2>Journey</h2>
           </div>
-          <div class="timeline" id="timeline"></div>
+          <div class="journey-timeline" id="journeyTimeline"></div>
         </div>
       </section>
 
       <!-- ABOUT SECTION -->
-      <section id="about" class="section">
-        <div class="container">
+      <section id="about" class="section section-pad">
+        <div class="section-wrapper">
           <div class="section-header">
-            <i class="fas fa-sparkles section-icon"></i>
-            <h2>About & Skills</h2>
+            <i class="fas fa-sparkles section-icon" style="color: var(--nebula-pink)"></i>
+            <h2>About</h2>
           </div>
           <div class="about-content">
             <p class="about-text">
@@ -100,34 +118,43 @@
             <p class="about-text">
               Outside of that, I'm someone who genuinely loves learning — I'm expanding into full applications, design, and creative work, all documented in public on this site as I go.
             </p>
-            <div class="skills-section" id="skillsSection"></div>
+
+            <div style="margin-top: 40px;">
+              <div class="section-header" style="margin-bottom: 24px;">
+                <i class="fas fa-code" style="color: var(--teal); font-size: 18px;"></i>
+                <h3 style="margin: 0; font-size: 20px; font-weight: 700;">Skills</h3>
+              </div>
+              <div class="skills-grid" id="skillsGrid"></div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- COLLABORATE SECTION -->
-      <section id="collaborate" class="section">
-        <div class="container">
+      <section id="collaborate" class="section section-pad">
+        <div class="section-wrapper">
           <div class="section-header">
-            <i class="fas fa-rocket section-icon"></i>
+            <i class="fas fa-rocket section-icon" style="color: var(--flame)"></i>
             <h2>Collaborate</h2>
           </div>
-          <div class="collaborate-content">
+
+          <div class="collaborate-grid">
+            <!-- FORM -->
             <form class="contact-form" id="contactForm">
-              <p>Tell me what you're looking for and I'll get back to you by email.</p>
-              
+              <p class="form-intro">Tell me what you're looking for and I'll get back to you by email.</p>
+
               <div class="form-group">
-                <label>Name</label>
-                <input type="text" name="name" required placeholder="Your name">
+                <label class="form-label">NAME</label>
+                <input type="text" name="name" placeholder="Your name" required>
               </div>
-              
+
               <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" required placeholder="you@example.com">
+                <label class="form-label">EMAIL</label>
+                <input type="email" name="email" placeholder="you@example.com" required>
               </div>
-              
+
               <div class="form-group">
-                <label>What are you looking for?</label>
+                <label class="form-label">WHAT ARE YOU LOOKING FOR?</label>
                 <select name="query">
                   <option>Collaboration</option>
                   <option>Hire me</option>
@@ -135,15 +162,16 @@
                   <option>Just saying hi</option>
                 </select>
               </div>
-              
+
               <div class="form-group">
-                <label>Message</label>
+                <label class="form-label">MESSAGE</label>
                 <textarea name="message" rows="4" placeholder="A few details about the project or opportunity"></textarea>
               </div>
-              
-              <button type="submit" class="btn btn-primary">Send Message</button>
+
+              <button type="submit" class="btn btn-primary">SEND</button>
             </form>
 
+            <!-- SOCIAL SECTION -->
             <div class="social-section">
               <div class="social-links">
                 <a href="mailto:rupalrupashreebiswal@gmail.com" class="social-link" title="Email">
@@ -158,7 +186,7 @@
               </div>
 
               <div class="elsewhere">
-                <p class="elsewhere-label">Elsewhere</p>
+                <p class="elsewhere-label">ELSEWHERE</p>
                 <div class="elsewhere-grid" id="elsewhereGrid"></div>
               </div>
             </div>
@@ -172,6 +200,6 @@
     </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script-exact.js"></script>
 </body>
 </html>
