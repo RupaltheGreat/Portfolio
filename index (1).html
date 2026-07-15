@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Den — Software Engineer & Explorer</title>
+  <meta name="description" content="Portfolio of Den — software engineer, designer, model, and creator." />
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body class="night">
+
+  <!-- STAR FIELD (night only) -->
+  <div class="stars" id="stars"></div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="#top" class="logo">Den<span>.</span></a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#design">Design</a>
+      <a href="#creative">Creative</a>
+      <a href="#writing">Writing</a>
+      <a href="#journey">Journey</a>
+      <a href="#about">About</a>
+      <a href="#collaborate">Collaborate</a>
+    </nav>
+    <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="hero">
+    <div class="photo-wrap">
+      <div class="photo" id="photo"></div>
+      <div class="orbit-ring"></div>
+      <button id="orbitDot" class="orbit-dot" title="Launch!"></button>
+      <div id="rocket" class="rocket">🚀</div>
+      <div id="trail" class="trail"></div>
+    </div>
+    <div class="intro">
+      <p class="eyebrow">Hello, I'm</p>
+      <h1>Den</h1>
+      <h2 id="role" class="role">Software Engineer · Explorer</h2>
+      <p class="lede">
+        I build software by day, chase design & creative work on the side,
+        and treat every project like an expedition.
+        Click the dot orbiting my photo — see what happens.
+      </p>
+      <div class="cta">
+        <a href="#collaborate" class="btn btn-primary">Get in touch →</a>
+        <a href="#work" class="btn btn-ghost">See my work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK (TECH) -->
+  <section id="work" class="section">
+    <div class="section-head"><span class="eyebrow accent">◆ Work</span><h2>Software & engineering</h2></div>
+    <div class="grid">
+      <article class="card"><h3>Daily Flow</h3><p>Task & scheduling app that turns your list into a realistic day plan.</p><div class="tags"><span>React</span><span>Scheduling</span></div></article>
+      <article class="card"><h3>Document Q&A assistant</h3><p>Ask plain-language questions across uploaded docs — answers cited back to source.</p><div class="tags"><span>LLM</span><span>Retrieval</span></div></article>
+      <article class="card"><h3>Integration playground</h3><p>Small services talking to each other — a sandbox for clean API design.</p><div class="tags"><span>Node</span><span>APIs</span></div></article>
+      <article class="card"><h3>This portfolio</h3><p>Space-themed single page built from scratch to sharpen layout skills.</p><div class="tags"><span>HTML</span><span>CSS</span></div></article>
+    </div>
+  </section>
+
+  <!-- DESIGN -->
+  <section id="design" class="section">
+    <div class="section-head"><span class="eyebrow accent">◆ Design</span><h2>Design</h2></div>
+    <div class="grid">
+      <article class="card"><h3>Brand marks</h3><p>Logo explorations and wordmarks for side projects.</p></article>
+      <article class="card"><h3>UI mockups</h3><p>Product screens in Figma before I code them up.</p></article>
+    </div>
+  </section>
+
+  <!-- CREATIVE -->
+  <section id="creative" class="section">
+    <div class="section-head"><span class="eyebrow accent">◆ Creative</span><h2>Modeling & content</h2></div>
+    <div class="grid">
+      <article class="card"><h3>Modeling</h3><p>Portrait & editorial shoots — selected frames.</p></article>
+      <article class="card"><h3>Content creation</h3><p>Short-form video and stills across Instagram & YouTube.</p></article>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing" class="section">
+    <div class="section-head"><span class="eyebrow accent">◆ Writing</span><h2>Writing</h2></div>
+    <div class="grid">
+      <article class="card"><h3>Field notes</h3><p>Essays on curiosity, building, and staying beginner-minded.</p></article>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey" class="section">
+    <div class="section-head"><span class="eyebrow accent">◆ Journey</span><h2>A short timeline</h2></div>
+    <div class="timeline">
+      <div><b>2022</b><p>First lines of code — fell for the loop of build → break → learn.</p></div>
+      <div><b>2023</b><p>Started shipping small tools for friends. Discovered design as another kind of engineering.</p></div>
+      <div><b>2024</b><p>Freelance software work; picked up modeling & content on the side.</p></div>
+      <div><b>2026</b><p>Building this portfolio and exploring AI-assisted product work.</p></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="section-head"><span class="eyebrow accent">◆ About</span><h2>Beyond the résumé</h2></div>
+    <p class="prose">
+      I'm a software engineer who enjoys wearing more than one hat. When I'm not shipping code
+      I'm shooting, writing, or trying something I've never done before. Curiosity is a
+      discipline — the more directions you can move in, the more interesting the work gets.
+    </p>
+  </section>
+
+  <!-- COLLABORATE (contact form → your Gmail via FormSubmit) -->
+  <section id="collaborate" class="section">
+    <div class="section-head"><span class="eyebrow accent">◆ Collaborate</span><h2>Say hi</h2></div>
+
+    <!-- 🔴 CHANGE THE EMAIL BELOW to your real address -->
+    <form class="contact" action="https://formsubmit.co/YOUR_EMAIL@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New portfolio message" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="text"  name="name"     placeholder="Your name" required />
+      <input type="email" name="email"    placeholder="Email" required />
+      <input type="text"  name="category" placeholder="Category (tech / design / creative / other)" />
+      <textarea name="message" rows="5" placeholder="Tell me about your project…" required></textarea>
+      <button type="submit" class="btn btn-primary">Send message →</button>
+      <p class="hint">
+        First time only: after you deploy, submit the form once — FormSubmit emails
+        <em>you</em> a confirmation link. Click it, and every future message lands in your Gmail.
+      </p>
+    </form>
+
+    <div class="socials">
+      <a href="https://github.com/your-handle" aria-label="GitHub">GitHub</a>
+      <a href="https://linkedin.com/in/your-handle" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> Den. Built with curiosity.</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
